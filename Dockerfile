@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     g++ \
     git
 
-# Copy package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json first
 COPY package*.json ./
 
 # Install production dependencies
