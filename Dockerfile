@@ -14,8 +14,8 @@ RUN apk add --no-cache \
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (fixed: removed deprecated --only=production flag)
+RUN npm ci --omit=dev
 
 # Copy the rest of the application code
 COPY . .
@@ -39,7 +39,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Set environment variables (these should be overridden at runtime)
 ENV NODE_ENV=production
-ENV TOKEN=""
 ENV PORT=3000
 
 # Start the bot
