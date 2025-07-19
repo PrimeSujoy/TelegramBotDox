@@ -11,8 +11,14 @@ RUN apk add --no-cache \
     g++ \
     git
 
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+# Copy package.json first (required)
+COPY package.json ./
+
+# Copy package-lock.json if it exists (optional)
+COPY package-lock.json* ./
+
+# Debug: List files to verify they were copied
+RUN ls -la /app/
 
 # Install dependencies
 # Use npm install if no package-lock.json exists, otherwise use npm ci
