@@ -15,7 +15,8 @@ RUN apk add --no-cache \
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+# Use npm install if no package-lock.json exists, otherwise use npm ci
+RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi
 
 # Copy the rest of the application code
 COPY . .
