@@ -39,7 +39,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Set environment variables (these should be overridden at runtime)
 ENV NODE_ENV=production
-ENV BOT_TOKEN=""
+ENV TOKEN=""
 ENV PORT=3000
 
 # Start the bot
