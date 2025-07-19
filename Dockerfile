@@ -14,8 +14,8 @@ RUN apk add --no-cache \
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install dependencies (using --only=production for older npm versions)
-RUN npm ci --only=production
+# Install dependencies (omit devDependencies for production)
+RUN npm ci --omit=dev
 
 # Copy the rest of the application code
 COPY . .
